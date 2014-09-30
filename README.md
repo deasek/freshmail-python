@@ -1,17 +1,12 @@
-freshmail-python
-================
+# FreshMail-Python
 
-Python class for FreshMail API
+A Python class for FreshMail REST API.
 
-**Usage:
-from .freshmail import FreshMail
+## Installation
 
-#Contructor
-fm = FreshMail(api_key,api_secret)
+    require_once 'class.rest.php'
+    require_once 'config.php';
 
-#get JSON response
-response = fm.request('ping')
+## Examples
 
-#get status code of response
-http_code = fm.getHttpCode()
-
+All samples included in samples directory.
