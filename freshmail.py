@@ -17,7 +17,7 @@ class FreshMail(object):
     httpCode = ''
     contentType = 'application/json'
 
-    host = 'https://app.freshmail.pl/'
+    host = 'https://api.freshmail.com/'
     prefix = 'rest/'
 
 
