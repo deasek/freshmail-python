@@ -89,13 +89,18 @@ class FreshMail(object):
         else:
             return self.response
 
-
-    class Api(object):
-        """
-        Metody wysokiego poziomu
-        """
-        def addSubscriber(self, email, list_hash, custom_fields=None):
-            pass
+    def addSubscriber(self, email, list_hash, state=3, confirm=1, custom_fields=None):
+        #self, url, payload=None, raw_resonse=False
+        payload = {
+          'email' : email,
+          'list' : list_hash,
+          'state' : state,
+          'confirm' : confirm
+        }
+        url = 'subscriber/add'
+        response = self.request(url, payload)
+        print response
+        return
 
 
 
