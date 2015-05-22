@@ -111,12 +111,19 @@ class FreshMail(object):
           'state' : state,
           'confirm' : confirm
         }
+
+        if custom_fields is not None and isinstance(custom_fields, dict):
+          # custom fields need to be a dict
+          payload['custom_fields'] = custom_fields
+        else:
+          raise FreshMailException({'message':'Custom fields must be a dict. Got {}'.format(custom_fields)})
+
         url = 'subscriber/add'
         response = self.request(url, payload)
         print response
         return
         
-    def deleteSubscriber(self, email, list_hash, state=3, confirm=1, custom_fields=None):
+    def deleteSubscriber(self, email, list_hash):
         #self, url, payload=None, raw_response=False
         payload = {
           'email' : email,
@@ -181,6 +188,18 @@ class FreshMail(object):
         else:
           raise FreshMailException({'message':'No lists found'})
         
+    def addCustomFieldtoList(self, list, field_name, tag=None, type=0):
+        url = 'subscribers_list/addField'
+        payload = {
+            'hash': list,
+            'name' : field_name,
+            'type' : type
+        }
+        if tag is not None:
+          payload['tag'] = tag
+          
+        response = self.request(url,payload,method='POST')
+        return response
 
 class FreshMailException(Exception):
     pass
