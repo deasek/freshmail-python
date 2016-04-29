@@ -1,12 +1,17 @@
 from freshmail import FreshMail
-from freshmail_config import *
 
-email = TEST_EMAIL
+EMAIL = '?'
+API_KEY = '?'
+API_SECRET = '?'
 
-fm = FreshMail(FRESHMAIL_API_KEY,FRESHMAIL_API_SECRET)
-list = '16ll8gurkq'
-state = 1 #Active
-confirm = 0 #Do not send confirmation email
-custom_fields = {'name':'Full Name', 'first_name': 'FirstName'}
-fm.addSubscriber(email,list,state,confirm,custom_fields);
+fm = FreshMail(API_KEY, API_SECRET)
 
+email = EMAIL
+list = '3ssib1rq4c'
+state = 1 # Active
+confirm = 1 # Do not send confirmation email
+custom_fields = {}
+
+# fm.addSubscriber(email, list, state, confirm, custom_fields)
+fm.mailText(email, "Subject", "Message body")
+fm.mailHtml(email, "Subject", "<h1>Message body</h1>")
