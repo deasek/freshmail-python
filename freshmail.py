@@ -74,7 +74,7 @@ class FreshMail(object):
                                    post_data,
                                    self.api_secret,)
         m = hashlib.sha1()
-        m.update(strSign)
+        m.update(strSign.encode("utf-8"))
         headers = {
             'content-type': self.contentType,
             'X-Rest-ApiKey': self.api_key,
@@ -103,6 +103,32 @@ class FreshMail(object):
         else:
             return self.response
 
+    def mailText(self, email, subject, text):
+        # self, url, payload=None, raw_response=False
+        payload = {
+            'subscriber': email,
+            'subject': subject,
+            'text': text
+        }
+
+        url = 'mail'
+        response = self.request(url, payload)
+        print(response)
+        return
+
+    def mailHtml(self, email, subject, html):
+        # self, url, payload=None, raw_response=False
+        payload = {
+            'subscriber': email,
+            'subject': subject,
+            'html': html
+        }
+
+        url = 'mail'
+        response = self.request(url, payload)
+        print(response)
+        return
+
     def addSubscriber(self, email, list_hash, state=3, confirm=1, custom_fields=None):
         #self, url, payload=None, raw_response=False
         payload = {
@@ -120,7 +146,7 @@ class FreshMail(object):
 
         url = 'subscriber/add'
         response = self.request(url, payload)
-        print response
+        print(response)
         return
         
     def deleteSubscriber(self, email, list_hash):
@@ -131,7 +157,7 @@ class FreshMail(object):
         }
         url = 'subscriber/delete'
         response = self.request(url, payload)
-        print response
+        print(response)
         return
 
     def getLists(self):
