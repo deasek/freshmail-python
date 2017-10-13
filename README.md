@@ -6,7 +6,7 @@ A Python class for FreshMail REST API.
 
 Copy freshmail.py into your app directory and import class:
 
-    from freshmail.py import Frashmail
+    from freshmail.py import FreshMail
     
 Initialize FM object with:
 
